@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light-only palette from the Studio design. The zinc/blue overrides restyle the playground components too. */
+@theme {
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-page: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-subtle: #fafbfc;
+  --color-ink: #14171c;
+  --color-ink-2: #3d4350;
+  --color-muted: #5b6270;
+  --color-line: #e3e6eb;
+  --color-line-soft: #eef0f3;
+  --color-line-strong: #c9cfda;
+  --color-dash: #b9c3d6;
+  --color-chip: #eef1f6;
+  --color-track: #e9ecf1;
+  --color-accent: #2f5bea;
+  --color-accent-soft: #eef2fe;
+  --color-accent-line: #c9d6fb;
+  --color-link: #2448c9;
+  --color-code: #0f1218;
+  --color-code-2: #161a22;
+  --color-code-line: #262b36;
+  --color-code-border: #343b49;
+  --color-code-ink: #d7dde8;
+  --color-code-muted: #a9b1c1;
+  --color-code-link: #8db0ff;
+  --color-ok: #11603a;
+  --color-ok-bg: #e6f4ea;
+  --color-ok-dark: #9be3b8;
+  --color-warn: #6b3a06;
+  --color-warn-bg: #fdf1de;
+  --color-warn-dark: #f7b267;
+  --color-err: #8c1d13;
+  --color-err-bg: #fdecea;
+  --color-err-dark: #ff9c93;
+  --color-err-line: #f2c4bc;
+
+  --color-zinc-50: #f5f6f8;
+  --color-zinc-100: #eef1f6;
+  --color-zinc-200: #e3e6eb;
+  --color-zinc-300: #c9cfda;
+  --color-zinc-400: #9aa3b2;
+  --color-zinc-500: #5b6270;
+  --color-zinc-600: #3d4350;
+  --color-zinc-700: #3d4350;
+  --color-zinc-800: #262b36;
+  --color-zinc-900: #14171c;
+  --color-zinc-950: #0f1218;
+  --color-blue-50: #eef2fe;
+  --color-blue-500: #2f5bea;
+  --color-blue-600: #2f5bea;
+  --color-blue-700: #2448c9;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-page font-sans text-sm text-ink;
+}
+
+a {
+  @apply text-link;
+}
+
+@utility btn {
+  @apply inline-flex min-h-9 items-center justify-center gap-2 rounded-lg border border-line-strong bg-surface px-3 text-sm font-medium text-ink no-underline hover:bg-chip disabled:pointer-events-none disabled:opacity-40;
+}
+
+@utility btn-primary {
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border-0 bg-accent px-4 text-sm font-semibold text-white no-underline hover:brightness-110 disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility btn-dark {
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-ink bg-ink px-4 text-sm font-semibold text-white no-underline disabled:opacity-50;
+}
+
+@utility btn-code {
+  @apply inline-flex min-h-8 items-center gap-2 rounded-md border border-code-border bg-transparent px-2.5 text-xs text-[#e6e9ef] no-underline hover:bg-code-2;
+}
+
+@utility input {
+  @apply min-h-10 rounded-lg border border-line-strong bg-surface px-3 text-sm text-ink;
+}
+
+@utility field-label {
+  @apply text-xs font-semibold text-ink-2;
+}
+
+@utility panel-title {
+  @apply px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-muted uppercase;
+}
+
+@utility card {
+  @apply rounded-xl border border-line bg-surface;
+}

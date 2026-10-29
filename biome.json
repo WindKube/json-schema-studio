@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!dist",
+      "!node_modules",
+      "!test-results",
+      "!playwright-report",
+      "!.wrangler"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  }
+}

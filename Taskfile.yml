@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  run:
+    desc: Start the app in Docker Compose at http://localhost:5173
+    cmds:
+      - docker compose run --rm -e CI=true app pnpm install --frozen-lockfile
+      - docker compose up --build app
+
+  migrate:
+    desc: Apply D1 migrations to the local database
+    cmds:
+      - docker compose run --rm app pnpm migrate
+
+  deploy:
+    desc: Build, migrate the remote D1 database and deploy the Worker
+    preconditions:
+      - sh: docker compose run --rm -T app test -f /root/.config/.wrangler/config/default.toml
+        msg: Not logged in to Cloudflare. Run `task wrangler:login` first.
+    cmds:
+      - docker compose run --rm -e CI=true app pnpm install --frozen-lockfile
+      - docker compose run --rm app pnpm run deploy
+
+  wrangler:login: docker compose run --rm app pnpm exec wrangler login --device
+  wrangler:create:db: docker compose run --rm app pnpm exec wrangler d1 create json-schema-studio
+  wrangler:secret:github_client_id: docker compose run --rm app pnpm exec wrangler secret put GITHUB_CLIENT_ID
+  wrangler:secret:github_client_secret: docker compose run --rm app pnpm exec wrangler secret put GITHUB_CLIENT_SECRET
