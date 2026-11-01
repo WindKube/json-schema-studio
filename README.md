@@ -48,3 +48,4 @@ The GitHub OAuth app for production needs the callback `https://<your-domain>/au
 and only asks for `read:user user:email`.
 
 Then `task deploy` builds, applies D1 migrations remotely and deploys the Worker.
+
